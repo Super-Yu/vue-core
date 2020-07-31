@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<style>
+  h1{
+    width: 50%;
+    display: inline-block;
+  }
+</style>
+<body>
+  <div id="app">
+
+    <div>
+      <div style="width:50%;display:inline-block;">a</div>
+      <div style="width:50%;display:inline-block;">a</div>
+    </div>
+    <div class="box">
+      <h1>{{msg1}}</h1>
+      <h1>{{msg}}</h1>
+    </div>
+    <input type="text" v-model="msg"/>
+    <buttom v-on:click="handleClick">v-on:handleClick</buttom>
+    <buttom @click="handleClick">@handleClick</buttom>
+  </div>
+</body>
+<script src='.\simple-vue.js'></script>
+<script>
+  let vm = new Vue({
+    el:'#app',
+    data: {
+      msg: 'hello world',
+      msg1: 'msg1'
+    },
+    methods:{
+      handleClick(){
+        this.msg = new Date().getTime();
+      }
+    }
+
+  })
+
+  // console.log(vm.msg)
+  // vm.$data.msg = {a:'1'}
+  // console.log(vm.msg)
+
+  // ps: 1.0和2.0的区别主要在模板编译上 
+  // 1.0是运行时解析模板内容，数据和模板进行绑定
+  // 2.0支持运行时解析，更多的是静态解析。把模板内容解析为vdom(使用js对象对我们的dom进行描述) 在对比和更新过程中 在内存中对比新老两个dom对象是否一致 判断是否更新
+
+  // qa：
+  // 怎么实现只变更一个
+  // {{}}里面是三目运算  new function()
+  // msg多次变更的时候优化
+</script>
+  
+
+</html>
